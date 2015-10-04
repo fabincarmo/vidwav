@@ -9,10 +9,10 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 # Uncomment if you want to use TeX
-from matplotlib import rc
-rc('text', usetex=True)
-rc('font', **{'family':'serif', 'serif':['Computer Modern Roman'], 
-        'monospace': ['Computer Modern Typewriter'], 'size':8})
+#from matplotlib import rc
+#rc('text', usetex=True)
+#rc('font', **{'family':'serif', 'serif':['Computer Modern Roman'], 
+#        'monospace': ['Computer Modern Typewriter'], 'size':8})
 
 import matplotlib.animation as manimation
 import wave
