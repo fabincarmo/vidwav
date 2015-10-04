@@ -7,5 +7,4 @@ SciPy 0.13.3<br>
 Matplotlib 1.3.1<br>
 ffmpeg version 2.8<br>
 
-Here is a video produced:
-<iframe width="420" height="315" src="https://www.youtube.com/embed/Db3DWXqwey4" frameborder="0" allowfullscreen></iframe>
+Here is a video produced: https://www.youtube.com/embed/Db3DWXqwe4y
