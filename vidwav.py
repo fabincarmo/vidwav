@@ -46,10 +46,10 @@ def vidwav(wavfile, fps=25):
     times = np.arange(audio.shape[0]) / float(fs)
     fftshift = np.fft.fftshift
     
-    fig = plt.figure(figsize=(4,3))
+    fig = plt.figure(figsize=(8,4))
     
     plt.subplot(211)
-    plt.plot(times, (audio[:,0]).astype(float)/np.max(np.abs(audio[:,0])), c='k', lw=.5)
+    plt.plot(times, (audio[:,0]).astype(float)/np.max(np.abs(audio[:,0])), c='k', lw=.3)
     plt.xlim(0,duration)
     plt.ylim(-1,1)
     
