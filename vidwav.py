@@ -81,7 +81,7 @@ def vidwav(wavfile, fps=25):
             writer.grab_frame()
     
     import os
-    os.system("ffmpeg -y -i "+wavfile+" -i temp.mp4 "+wavfile.split('.')[0]+".mp4")
+    os.system("ffmpeg -y -i "+wavfile+" -i temp.mp4 -strict -2 "+wavfile.split('.')[0]+".mp4")
     os.system("rm temp.mp4")
 
 def main():
