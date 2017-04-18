@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 #from matplotlib import rc
 #rc('text', usetex=True)
 #rc('font', **{'family':'serif', 'serif':['Computer Modern Roman'], 
-#        'monospace': ['Computer Modern Typewriter'], 'size':8})
+#        'monospace': ['Computer Modern Typewriter'], 'size':14})
 
 import matplotlib.animation as manimation
 import wave
@@ -26,7 +26,7 @@ def vidwav(wavfile, fps=25):
     FFMpegWriter = manimation.writers['ffmpeg']
     metadata = dict(title='Wav Spectrogram', artist='Matplotlib',
             comment='')
-    writer = FFMpegWriter(fps=fps, metadata=metadata, bitrate=6000)
+    writer = FFMpegWriter(fps=fps, metadata=metadata, bitrate=3500)
     
     wf = wave.open(wavfile, 'rb')
     
@@ -46,10 +46,11 @@ def vidwav(wavfile, fps=25):
     times = np.arange(audio.shape[0]) / float(fs)
     fftshift = np.fft.fftshift
     
-    fig = plt.figure(figsize=(8,4))
+    fig = plt.figure(figsize=(13.6,7.2))
     
     plt.subplot(211)
     plt.plot(times, (audio[:,0]).astype(float)/np.max(np.abs(audio[:,0])), c='k', lw=.3)
+
     plt.xlim(0,duration)
     plt.ylim(-1,1)
     
@@ -67,7 +68,12 @@ def vidwav(wavfile, fps=25):
     
     l2, = plt.plot([], [], '#333333', lw=2)
     
-    plt.tight_layout()
+#    plt.tight_layout()
+    plt.subplots_adjust(bottom=0.09, 
+                                 right=0.988, 
+                                 top=0.98, 
+                                 left=0.05, 
+                                 hspace=0.1)
     
     x = np.array([0., 0.])
     y0 = np.array([-1, 1])
@@ -81,7 +87,7 @@ def vidwav(wavfile, fps=25):
             writer.grab_frame()
     
     import os
-    os.system("ffmpeg -y -i "+wavfile+" -i temp.mp4 -strict -2 "+wavfile.split('.')[0]+".mp4")
+    os.system("ffmpeg -y -i "+wavfile+" -i temp.mp4 -c:v copy -strict -2 "+wavfile.split('.')[0]+".mp4")
     os.system("rm temp.mp4")
 
 def main():
