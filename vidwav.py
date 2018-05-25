@@ -40,13 +40,11 @@ def vidwav(wavfile, fps=25):
     
     audio = np.fromstring(wf.readframes(int(duration*fs*bytes_per_sample/channels)), dtype=dtype)
     audio.shape = (audio.shape[0]/channels, channels)
-    audio_fft = np.fft.fft(audio[:,0])
     freqs = np.fft.fftfreq(audio[:,0].shape[0], 1.0/fs) / 1000.0
     max_freq_kHz = freqs.max()
     times = np.arange(audio.shape[0]) / float(fs)
-    fftshift = np.fft.fftshift
     
-    fig = plt.figure(figsize=(13.6,7.2))
+    fig = plt.figure(figsize=(6.4, 4.8))
     
     plt.subplot(211)
     plt.plot(times, (audio[:,0]).astype(float)/np.max(np.abs(audio[:,0])), c='k', lw=.3)
@@ -57,7 +55,7 @@ def vidwav(wavfile, fps=25):
     l1, = plt.plot([], [], '#333333', lw=2)
     
     plt.subplot(212)
-    plt.specgram(audio[:,0], Fs=fs)
+    plt.specgram(audio[:,0], Fs=fs, cmap=plt.get_cmap('jet'))
     plt.xlim(0,duration)
     plt.ylim(0,max_freq_kHz*1000.0)
     plt.xlabel('Time (s)')
@@ -70,10 +68,10 @@ def vidwav(wavfile, fps=25):
     
 #    plt.tight_layout()
     plt.subplots_adjust(bottom=0.09, 
-                                 right=0.988, 
+                                 right=0.98, 
                                  top=0.98, 
-                                 left=0.05, 
-                                 hspace=0.1)
+                                 left=0.08, 
+                                 hspace=0.14)
     
     x = np.array([0., 0.])
     y0 = np.array([-1, 1])
