@@ -89,7 +89,7 @@ def vidwav(wavfile, fps=25):
     os.remove("temp.mp4")
 
 def main():
-    vidwav("da ta.wav")
+    vidwav("data.wav")
 
 if __name__ == "__main__":
     main()
