@@ -38,7 +38,7 @@ def vidwav(wavfile, fps=25):
     dtype = 'int{0}'.format(bits_per_sample)
     channels = wf.getnchannels()
     
-    audio = np.fromstring(wf.readframes(int(duration*fs*bytes_per_sample/channels)), dtype=dtype)
+    audio = np.frombuffer(wf.readframes(int(duration*fs*bytes_per_sample/channels)), dtype=dtype)
     audio.shape = (int(audio.shape[0]/channels), channels)
     freqs = np.fft.fftfreq(audio[:,0].shape[0], 1.0/fs) / 1000.0
     max_freq_kHz = freqs.max()
@@ -85,11 +85,11 @@ def vidwav(wavfile, fps=25):
             writer.grab_frame()
     
     import os
-    os.system("ffmpeg -y -i "+wavfile+" -i temp.mp4 -c:v copy -strict -2 "+wavfile.split('.')[0]+".mp4")
+    os.system('ffmpeg -y -i "'+wavfile+'" -i temp.mp4 -c:v copy -strict -2 "'+wavfile.split('.')[0]+'.mp4"')
     os.remove("temp.mp4")
 
 def main():
-    vidwav("data.wav")
+    vidwav("da ta.wav")
 
 if __name__ == "__main__":
     main()
